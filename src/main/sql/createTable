@@ -1,0 +1,8 @@
+-- Create company tablet
+create table company (
+	cid serial primary key,
+	name varchar(200),
+    income float,
+    allIncome float,
+    parentId int
+);

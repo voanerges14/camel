@@ -33,5 +33,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
     <orderEntry type="library" name="Maven: javaee:javaee-api:5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax:javaee-web-api:6.0" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
+    <orderEntry type="library" name="Maven: postgresql:postgresql:9.1-901.jdbc4" level="project" />
   </component>
 </module>
