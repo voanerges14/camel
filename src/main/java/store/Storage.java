@@ -6,19 +6,17 @@ import java.util.Collection;
 
 public interface Storage {
 
-    public Collection<Company> values();
+    public Collection<Company> companys();
 
-    public int add(final Company user);
+    public int add(final Company company);
 
-    public void edit(final Company user);
+    public void edit(final Company company);
 
     public void delete(final int id);
 
     public Company get(final int id);
 
-    public Company findByLogin(final String login) ;
-
-    public int generateId();
+    public Company findById(final int id) ;
 
     public void close();
 }

@@ -13,10 +13,26 @@ public class Company {
     public Company(){
 
     }
-    public Company(int id, int parentId, String name, int companyPrice){
+
+    public Company(int id, String name, int companyPrice, int parentId){
         this.id = id;
         this.parentId = parentId;
         this.name = name;
         this.companyPrice = companyPrice;
     }
+    public String getName() {
+        return this.name;
+    }
+    public int getParentId() {
+        return parentId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
 }
