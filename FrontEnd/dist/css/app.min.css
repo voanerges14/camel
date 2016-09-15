@@ -1,0 +1,31 @@
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.company {
+  margin: 5px 0px 0px 20px;
+  background: #E6E6E6;
+  min-height: 30px;
+  display: table-cell;
+  vertical-align: middle; }
+
+.form-control {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px; }
+
+.name {
+  color: #000000;
+  margin: 0px 30px 0px 20px;
+  background: #5858FA; }
+
+.income {
+  color: #000000;
+  margin: 0px 20px 0px 0px;
+  background: #FF00BF; }
+
+.allIncome {
+  color: #000000;
+  margin: 0px 20px 0px 0px;
+  background: #DF01A5; }
