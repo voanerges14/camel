@@ -48,7 +48,7 @@ public class JDBCStore implements Storage{
 //        throw new IllegalStateException("Could not create new company");
 //    }
 
-        public int add(Company company) {
+    public int add(Company company) {
         try (final PreparedStatement statement =
                      this.connection.prepareStatement("insert into company (name) values (?)"
                              , Statement.RETURN_GENERATED_KEYS)) {
