@@ -8,10 +8,19 @@ public class Company {
     private int parentId;
     private String name;
     private int companyPrice;
+
+    public int getAllCompanysPrice() {
+        return allCompanysPrice;
+    }
+
     private int allCompanysPrice;
 
     public Company(){
 
+    }
+
+    public int getCompanyPrice() {
+        return companyPrice;
     }
 
     public Company(int id, String name, int companyPrice, int parentId){
@@ -35,4 +44,7 @@ public class Company {
         this.parentId = parentId;
     }
 
+    public void setAllCompanysPrice(int allCompanysPrice) {
+        this.allCompanysPrice = allCompanysPrice;
+    }
 }

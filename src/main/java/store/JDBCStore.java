@@ -22,19 +22,40 @@ public class JDBCStore implements Storage{
         try (final Statement statement = this.connection.createStatement();
              final ResultSet rs = statement.executeQuery("select * from company")) {
             while (rs.next()) {
-                companies.add(new Company(rs.getInt("cid"), rs.getString("name"), rs.getInt("income"), rs.getInt("parentId")));
+                companies.add(new Company(rs.getInt("cid"), rs.getString("name")
+                        , rs.getInt("income"), rs.getInt("parentId")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return companies;
     }
+/*не додає всіх параметрів */
+//    public int add(Company company) {
+//        try (final PreparedStatement statement =
+//                     this.connection.prepareStatement("insert into company (name) values (?)"
+//                             , Statement.RETURN_GENERATED_KEYS)) {
+//            statement.setString(1, company.getName());
+//            statement.executeUpdate();
+//            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+//                if (generatedKeys.next()) {
+//                    return generatedKeys.getInt(1);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        throw new IllegalStateException("Could not create new company");
+//    }
 
-    public int add(Company company) {
+        public int add(Company company) {
         try (final PreparedStatement statement =
                      this.connection.prepareStatement("insert into company (name) values (?)"
                              , Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, company.getName());
+            statement.setInt(1, company.getCompanyPrice());
+            statement.setInt(1, company.getAllCompanysPrice());
+            statement.setInt(1, company.getParentId());
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -50,13 +71,29 @@ public class JDBCStore implements Storage{
     public void edit(Company company) {
 
     }
-
+/*хз хз*/
     public void delete(int id) {
-
+        try (final PreparedStatement statement = this.connection.prepareStatement("DELETE FROM company WHERE cid=(?)")) {
+            statement.setInt(1, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Company get(int id) {
-        return null;
+
+        try (final PreparedStatement statement = this.connection.prepareStatement("select * from company where cid=(?)")) {
+            statement.setInt(1, id);
+            try (final ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    return new Company(rs.getInt("cid"), rs.getString("name")
+                            ,rs.getInt("companyPrice"), rs.getInt("parentId"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalStateException(String.format("User %s does not exists", id));
     }
 
     public Company findById(int id) {

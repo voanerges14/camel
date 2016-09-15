@@ -6,3 +6,12 @@ create table company (
     allIncome float,
     parentId int
 );
+
+--Insert temp values to table
+INSERT INTO company (name, income, allincome, parentid)
+VALUES (1, 'Eleks', 450.1, 700.1, 7)
+
+--Delete row from table by id
+DELETE FROM company
+WHERE cid = 1;
+
