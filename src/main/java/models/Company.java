@@ -10,14 +10,14 @@ public class Company {
     private String name;
     private int companyPrice;
 
-//    public Company(){}
+    public Company(){}
 
-//    public Company(int id, String name, int companyPrice, int parentId){
-//        this.id = id;
-//        this.parentId = parentId;
-//        this.name = name;
-//        this.companyPrice = companyPrice;
-//    }
+    public Company(int id, String name, int companyPrice, int parentId){
+        this.id = id;
+        this.parentId = parentId;
+        this.name = name;
+        this.companyPrice = companyPrice;
+    }
 
     public void setId(int id) {this.id = id;}
     public int getId() {return id;}
