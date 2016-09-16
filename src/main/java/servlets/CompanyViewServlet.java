@@ -2,6 +2,8 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Company;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,25 +41,20 @@ public class CompanyViewServlet extends HttpServlet {
             json = br.readLine();
         }
 
-        // 2. initiate jackson mapper
         ObjectMapper mapper = new ObjectMapper();
-
-        // 3. Convert received JSON to Article
         Company company = mapper.readValue(json, Company.class);
-
-//
-        // 4. Set response type to JSON
         response.setContentType("application/json");
 
-        // 5. Add article to List<Article>
-//       companies.add(company);
+        JSONObject object = new JSONObject();
+        try {
+            object.put("id" , 11);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        // 6. Send List<Article> as JSON to client
-//        mapper.writeValue(response.getOutputStream(), "{\"id\":\"5\"}");
-
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"id\":\"5\"}");
+        PrintWriter out = response.getWriter();
+        out.print(object.toString());
+        out.flush();
 
     }
 
