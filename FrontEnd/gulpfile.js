@@ -42,6 +42,7 @@ gulp.task('sass', function() {
         // .pipe(minifyCSS())
         .pipe(rename('app.min.css'))
         .pipe(gulp.dest('../src/main/webapp/dist/css/'))
+        .pipe(gulp.dest('dist/css/'))
         .pipe(notify(' I did it! '))
         .pipe(connect.reload());
 });
@@ -55,6 +56,7 @@ gulp.task('js', function () {
         // .pipe(uglyfly())
         .pipe(rename('app.min.js'))
         .pipe(gulp.dest('../src/main/webapp/dist/js/'))
+        .pipe(gulp.dest('dist/js/'))        
         .pipe(notify(' I did it! '))
         .pipe(connect.reload());
 });
