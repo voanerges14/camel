@@ -54,7 +54,6 @@ public class JDBCStore implements Storage{
                              , Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, company.getName());
             statement.setInt(1, company.getCompanyPrice());
-            statement.setInt(1, company.getAllCompanysPrice());
             statement.setInt(1, company.getParentId());
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {

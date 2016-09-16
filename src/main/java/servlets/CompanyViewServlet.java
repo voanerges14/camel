@@ -1,9 +1,10 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.Article;
+import models.Company;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +14,15 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
+
+@WebServlet(urlPatterns = {"/add/company"})
 public class CompanyViewServlet extends HttpServlet {
 
 
     private static final long serialVersionUID = 1L;
 
     // This will store all received articles
-    List<Article> articles = new LinkedList<Article>();
+    List<Company> companies = new LinkedList<Company>();
 
     /***************************************************
      * URL: /jsonservlet
@@ -39,15 +42,21 @@ public class CompanyViewServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
 
         // 3. Convert received JSON to Article
-        Article article = mapper.readValue(json, Article.class);
-
+        Company company = mapper.readValue(json, Company.class);
+//
         // 4. Set response type to JSON
         response.setContentType("application/json");
 
         // 5. Add article to List<Article>
-        articles.add(article);
+       companies.add(company);
 
         // 6. Send List<Article> as JSON to client
-        mapper.writeValue(response.getOutputStream(), articles);
+//        mapper.writeValue(response.getOutputStream(), "{\"id\":\"5\"}");
+        mapper.writeValueAsString(company);
+//        response.setContentType("application/json");
+//        response.setCharacterEncoding("UTF-8");
+//        response.getWriter().write("{\"id\":\"5\"}");
     }
+
+
 }

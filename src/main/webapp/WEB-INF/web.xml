@@ -11,13 +11,13 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<servlet>
-		<servlet-name>jsonservlet</servlet-name>
-		<servlet-class>servlets.CompanyViewServlet</servlet-class>
-	</servlet>
+	<!--<servlet>-->
+		<!--<servlet-name>add/company</servlet-name>-->
+		<!--<servlet-class>servlets.CompanyViewServlet</servlet-class>-->
+	<!--</servlet>-->
 
-	<servlet-mapping>
-		<servlet-name>jsonservlet</servlet-name>
-		<url-pattern>/jsonservlet</url-pattern>
-	</servlet-mapping>
+	<!--<servlet-mapping>-->
+		<!--<servlet-name>add/company</servlet-name>-->
+		<!--<url-pattern>/add/company</url-pattern>-->
+	<!--</servlet-mapping>-->
 </web-app>     
