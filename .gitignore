@@ -12,8 +12,7 @@
 
 # Build results
 node_modules/
-src/
-.idea
+.idea/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -186,10 +185,7 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
-node_modules/
-orleans.codegen.cs
-
-# Since there are multiple workflows, uncomment next line to ignore bower_components 
+# Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 #bower_components/
 
@@ -249,3 +245,4 @@ paket-files/
 /Project - Unit 1/.ProjectUnit1.boltdata
 /Project - Unit 1/.sonar
 /Project - Unit 1/.sonarqube
+/FrontEnd/

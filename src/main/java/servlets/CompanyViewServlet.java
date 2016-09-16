@@ -43,19 +43,21 @@ public class CompanyViewServlet extends HttpServlet {
 
         // 3. Convert received JSON to Article
         Company company = mapper.readValue(json, Company.class);
+
 //
         // 4. Set response type to JSON
         response.setContentType("application/json");
 
         // 5. Add article to List<Article>
-       companies.add(company);
+//       companies.add(company);
 
         // 6. Send List<Article> as JSON to client
 //        mapper.writeValue(response.getOutputStream(), "{\"id\":\"5\"}");
-        mapper.writeValueAsString(company);
+
 //        response.setContentType("application/json");
 //        response.setCharacterEncoding("UTF-8");
-//        response.getWriter().write("{\"id\":\"5\"}");
+        response.getWriter().write("{\"id\":\"5\"}");
+
     }
 
 
