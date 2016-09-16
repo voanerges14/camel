@@ -12,6 +12,8 @@
 
 # Build results
 node_modules/
+src/
+.idea
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -247,4 +249,3 @@ paket-files/
 /Project - Unit 1/.ProjectUnit1.boltdata
 /Project - Unit 1/.sonar
 /Project - Unit 1/.sonarqube
-/.idea/
