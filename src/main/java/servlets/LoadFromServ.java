@@ -18,14 +18,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Pavlo on 17-09,Sep-16.
+ * Created by Bogdan on 18.09.2016.
  */
-@WebServlet(urlPatterns = {"/edit/company"})
-public class EditCompany extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    // This will store all received articles
-    List<Company> companies = new LinkedList<Company>();
+@WebServlet(urlPatterns = {"/get/companies"})
+public class LoadFromServ extends HttpServlet {
 
     /***************************************************
      * URL: /jsonservlet
@@ -34,20 +30,25 @@ public class EditCompany extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. get received JSON data from request
-        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-        String json = "";
-        if(br != null){
-            json = br.readLine();
-        }
-
-        ObjectMapper mapper = new ObjectMapper();
-        Company company = mapper.readValue(json, Company.class);
+        //id, String name, int companyPrice, int parentId
+        Company company = new Company (1, "test",10,-1);
+        Company company2 = new Company (2, "test2",20,1);
         response.setContentType("application/json");
 
         JSONObject object = new JSONObject();
+        JSONObject object1 = new JSONObject();
+        JSONObject object2 = new JSONObject();
         try {
-            object.put("id" , 11);
+            object1.append("id",company.getId());
+            object1.append("name",company.getName());
+            object1.append("companyPrice",company.getCompanyPrice());
+            object1.append("parentId",company.getParentId());
+            object2.append("id",company2.getId());
+            object2.append("name",company2.getName());
+            object2.append("companyPrice",company2.getCompanyPrice());
+            object2.append("parentId",company2.getParentId());
+            object.put("company",object2);
+            object.put("company2",object1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -57,4 +58,5 @@ public class EditCompany extends HttpServlet {
         out.flush();
 
     }
+
 }
