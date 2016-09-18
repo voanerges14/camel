@@ -16,6 +16,7 @@ import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/delete/company"})
 public class DeleteCompany extends HttpServlet{
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -41,6 +42,8 @@ public class DeleteCompany extends HttpServlet{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        response.setContentType("application/json");
+        response.setStatus(response.SC_OK);
     }
 
 }
