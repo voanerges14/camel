@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Company;
 import org.json.JSONException;
 import org.json.JSONObject;
+import store.JDBCStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +15,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 
 @WebServlet(urlPatterns = {"/add/company"})
-public class CompanyViewServlet extends HttpServlet {
+public class AddCompany extends HttpServlet {
 
 
     private static final long serialVersionUID = 1L;
@@ -35,6 +37,7 @@ public class CompanyViewServlet extends HttpServlet {
             throws ServletException, IOException{
 
         // 1. get received JSON data from request
+        request.setCharacterEncoding("UTF-8");
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
         if(br != null){
@@ -43,12 +46,18 @@ public class CompanyViewServlet extends HttpServlet {
 
         ObjectMapper mapper = new ObjectMapper();
         Company company = mapper.readValue(json, Company.class);
+        JSONObject object = new JSONObject();
         response.setContentType("application/json");
 
-        JSONObject object = new JSONObject();
         try {
-            object.put("id" , 11);
+            JDBCStore jdbcStore = new JDBCStore();
+            object.put("id" , jdbcStore.add(company));
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        catch (SQLException se){
+            se.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
