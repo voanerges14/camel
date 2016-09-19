@@ -3,7 +3,7 @@ package models;
 /**
  * Created by Pavlo on 14-09,Sep-16.
  */
-public class Company {
+public class Company  {
 
     private int id;
     private int parentId;
@@ -37,15 +37,14 @@ public class Company {
         return companyPrice;
     }
 
-    @Override
-    public String toString(){
-        return "{'id' : "+this.id+", 'name' : "+ this.name + ", 'companyPrice' : "
-                + this.companyPrice+", 'parentId' : "+this.parentId+"}";
-    }
-
-
-
-
-
-
+//    @Override
+//    public String toString(){
+//        return "{\"id\":" + this.id + ",\"name\":\"" + this.name + "\",\"companyPrice\":"
+//                + this.companyPrice + ",\"parentId\":" + this.parentId + "}";
+//    }
+//        @Override
+//        public String toString() {
+//            return "Article [title=" + name + ", url=" + name + ", categories="
+//                    + name + ", tags=" + name + "]";
+//        }
 }

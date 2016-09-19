@@ -55,12 +55,13 @@ public class JDBCStore implements Storage{
     }
 
     public void edit(Company company) {
-        String sqlExpresion = "UPDATE company SET name = (?), price = (?), parentId = (?) WHERE ID = (?)";
+//        String sqlExpresion = "UPDATE company SET name = (?), price = (?), parentId = (?) WHERE ID = (?)";
         try (final PreparedStatement statement = this.connection.prepareStatement(
-                "UPDATE company SET name = (?), price = (?), parentId = (?) WHERE ID = (?)")) {
+                "UPDATE company SET name = ?, price = ? WHERE cid = ?")) {
             statement.setString(1, company.getName());
             statement.setDouble(2, company.getCompanyPrice());
             statement.setInt(3, company.getParentId());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,19 +80,19 @@ public class JDBCStore implements Storage{
                 "   )\n" +
                 " DELETE FROM company WHERE (SELECT * FROM Rec \n" +
                 " WHERE cid is (?));";
-//        String qsl = "delete from company where id = (?)";
-//
+
 //        List<Company> list = new ArrayList<Company>();
 //        for(int i = 0; i < list.size(); ++i)
 //        {
 //            ResultSet list = "select cid from company where parentId = (?)";
+//        String qsl = "delete from company where id = (?)";
 //            delete(list[i]);
 //        }
-        try (final PreparedStatement statement = this.connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try (final PreparedStatement statement = this.connection.prepareStatement(sql)) {
+//            statement.setInt(1, id);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public Company get(int id) {
@@ -110,7 +111,7 @@ public class JDBCStore implements Storage{
         throw new IllegalStateException(String.format("User is does not exists", id));
     }
 
-/*можна покращити*/
+
     public void clean(){
         try
          {
@@ -120,6 +121,34 @@ public class JDBCStore implements Storage{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteById(int id){
+//       String sqlExpresion = "delete from company where id = (?)";
+        try (final PreparedStatement statement = this.connection.prepareStatement(
+                "delete from company where cid = ?")) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Collection<Company> companiesByParentId(int id) {
+        final List<Company> companies = new ArrayList<>();
+        try (final PreparedStatement statement = this.connection.prepareStatement(
+                "select * from company where parentId = ?"))
+ {
+            statement.setInt(1, id);
+     ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                companies.add(new Company(rs.getInt("cid"), rs.getString("name")
+                        , rs.getInt("price"), rs.getInt("parentId")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return companies;
     }
 
     public void close() {

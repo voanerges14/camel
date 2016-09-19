@@ -37,7 +37,7 @@ public class AddCompany extends HttpServlet {
             throws ServletException, IOException{
 
         // 1. get received JSON data from request
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("windows-1251");
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
         if(br != null){
