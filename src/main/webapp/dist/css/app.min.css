@@ -12,7 +12,9 @@
   display: table-cell;
   vertical-align: middle;
   border: 3px;
-  border-radius: 7px; }
+  border-radius: 7px;
+  float: left;
+  clear: both; }
 
 .nodes {
   margin-left: 18px; }
