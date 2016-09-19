@@ -39,7 +39,8 @@ public class Company {
 
     @Override
     public String toString(){
-        return "{'id' : "+this.id+", 'name' : "+ this.name + ", 'companyPrice' : "+ this.companyPrice+", 'parentId' : "+this.parentId+"}";
+        return "{'id' : "+this.id+", 'name' : "+ this.name + ", 'companyPrice' : "
+                + this.companyPrice+", 'parentId' : "+this.parentId+"}";
     }
 
 

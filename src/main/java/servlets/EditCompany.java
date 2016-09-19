@@ -2,8 +2,8 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Company;
-import org.json.JSONException;
 import org.json.JSONObject;
+import store.JDBCStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,15 +46,17 @@ public class EditCompany extends HttpServlet {
         Company company = mapper.readValue(json, Company.class);
         response.setContentType("application/json");
 
-        JSONObject object = new JSONObject();
         try {
-            object.put("id" , 11);
-        } catch (JSONException e) {
+            JDBCStore jdbcStore = new JDBCStore();
+            jdbcStore.edit(company);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         PrintWriter out = response.getWriter();
-        out.print(object.toString());
+        out.print(new JSONObject());
         out.flush();
 
     }

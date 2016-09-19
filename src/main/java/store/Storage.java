@@ -16,7 +16,5 @@ public interface Storage {
 
     public Company get(final int id);
 
-    public Company findById(final int id) ;
-
     public void close();
 }

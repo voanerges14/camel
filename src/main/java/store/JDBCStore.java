@@ -12,9 +12,12 @@ import java.util.List;
  */
 public class JDBCStore implements Storage{
     private final Connection connection;
+    String dbName = "postgres";
+    String dbPassword = "root";
 
-    public JDBCStore() throws SQLException {
-        this.connection =  DriverManager.getConnection("jdbc:postgresql://hostname:port/companiesDB","root", "root");
+    public JDBCStore() throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        this.connection =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/companiesDB",dbName, dbPassword);
     }
 
     public Collection<Company> companys() {
@@ -23,39 +26,23 @@ public class JDBCStore implements Storage{
              final ResultSet rs = statement.executeQuery("select * from company")) {
             while (rs.next()) {
                 companies.add(new Company(rs.getInt("cid"), rs.getString("name")
-                        , rs.getInt("income"), rs.getInt("parentId")));
+                        , rs.getInt("price"), rs.getInt("parentId")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    return null;
+    return companies;
     }
-/*не додає всіх параметрів */
-//    public int add(Company company) {
-//        try (final PreparedStatement statement =
-//                     this.connection.prepareStatement("insert into company (name) values (?)"
-//                             , Statement.RETURN_GENERATED_KEYS)) {
-//            statement.setString(1, company.getName());
-//            statement.executeUpdate();
-//            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-//                if (generatedKeys.next()) {
-//                    return generatedKeys.getInt(1);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        throw new IllegalStateException("Could not create new company");
-//    }
 
     public int add(Company company) {
         try (final PreparedStatement statement =
-                     this.connection.prepareStatement("insert into company (name) values (?)"
+             this.connection.prepareStatement("INSERT INTO company (name, price, parentid) VALUES(?,?,?)"
                              , Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, company.getName());
-            statement.setInt(1, company.getCompanyPrice());
-            statement.setInt(1, company.getParentId());
+            statement.setDouble(2, company.getCompanyPrice());
+            statement.setInt(3, company.getParentId());
             statement.executeUpdate();
+
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
@@ -68,11 +55,39 @@ public class JDBCStore implements Storage{
     }
 
     public void edit(Company company) {
-
+        String sqlExpresion = "UPDATE company SET name = (?), price = (?), parentId = (?) WHERE ID = (?)";
+        try (final PreparedStatement statement = this.connection.prepareStatement(
+                "UPDATE company SET name = (?), price = (?), parentId = (?) WHERE ID = (?)")) {
+            statement.setString(1, company.getName());
+            statement.setDouble(2, company.getCompanyPrice());
+            statement.setInt(3, company.getParentId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 /*хз хз*/
     public void delete(int id) {
-        try (final PreparedStatement statement = this.connection.prepareStatement("DELETE FROM company WHERE cid=(?)")) {
+
+        String sql = "WITH RECURSIVE\n" +
+                " Rec (cid, name, price, parentId)\n" +
+                " AS (\n" +
+                "   SELECT cid, name, price, parentId FROM company\n" +
+                "   UNION ALL\n" +
+                "   SELECT Rec.cid, Rec.name, Rec.price, Rec.parentId\n" +
+                "    FROM Rec, company\n" +
+                "    WHERE Rec.cid = company.parentId\n" +
+                "   )\n" +
+                " DELETE FROM company WHERE (SELECT * FROM Rec \n" +
+                " WHERE cid is (?));";
+//        String qsl = "delete from company where id = (?)";
+//
+//        List<Company> list = new ArrayList<Company>();
+//        for(int i = 0; i < list.size(); ++i)
+//        {
+//            ResultSet list = "select cid from company where parentId = (?)";
+//            delete(list[i]);
+//        }
+        try (final PreparedStatement statement = this.connection.prepareStatement(sql)) {
             statement.setInt(1, id);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,8 +110,16 @@ public class JDBCStore implements Storage{
         throw new IllegalStateException(String.format("User is does not exists", id));
     }
 
-    public Company findById(int id) {
-        return null;
+/*можна покращити*/
+    public void clean(){
+        try
+         {
+             Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM company");
+             statement.executeQuery("ALTER SEQUENCE company_cid_seq  RESTART WITH 1");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void close() {

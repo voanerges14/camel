@@ -1,7 +1,5 @@
 package servlets;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import store.JDBCStore;
 
 import javax.servlet.ServletException;
@@ -24,15 +22,17 @@ public class DeleteCompany extends HttpServlet{
         String json = "";
         int id = 0;
 
-
         if(br != null){
             json = br.readLine();
         }
 
         try {
-            JSONObject object = new JSONObject(json);
-            id = object.getInt("id");
-        } catch (JSONException e) {
+            JDBCStore jdbcStore = new JDBCStore();
+            jdbcStore.delete(id);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
