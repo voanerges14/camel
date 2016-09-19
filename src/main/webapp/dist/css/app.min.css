@@ -12,7 +12,9 @@
   display: table-cell;
   vertical-align: middle;
   border: 3px;
-  border-radius: 7px; }
+  border-radius: 7px;
+  float: left;
+  clear: both; }
 
 .nodes {
   margin-left: 18px; }
@@ -51,8 +53,3 @@
 .btn-default {
   margin-left: 5px;
   margin-right: 5px; }
-
-.div {
-  white-space: normal;
-  width: 50%;
-}

@@ -1,5 +1,8 @@
 package servlets;
 
+import models.Company;
+import org.json.JSONException;
+import org.json.JSONObject;
 import store.JDBCStore;
 
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Collection;
 
 @WebServlet(urlPatterns = {"/delete/company"})
 public class DeleteCompany extends HttpServlet{
@@ -27,12 +31,9 @@ public class DeleteCompany extends HttpServlet{
         }
 
         try {
-            JDBCStore jdbcStore = new JDBCStore();
-            jdbcStore.delete(id);
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            JSONObject jsonObject = new JSONObject(json);
+            recursDelet(jsonObject.getInt("id"));
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -50,4 +51,18 @@ public class DeleteCompany extends HttpServlet{
         out.flush();
     }
 
+    private static void recursDelet(int id){
+        try {
+            JDBCStore jdbcStore = new JDBCStore();
+            jdbcStore.deleteById(id);
+            Collection<Company> compList = jdbcStore.companiesByParentId(id);
+            for(Company c : compList) {
+                recursDelet(c.getId());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
