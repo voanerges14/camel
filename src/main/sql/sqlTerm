@@ -7,6 +7,11 @@ create table company (
     parentId int
 );
 
+USE companies;
+CREATE TABLE company (cid int not null auto_increment, primary key (cid), name VARCHAR(250),
+    price float, parentid int);
+
+
 --Insert temp values to table
 INSERT INTO company (name, income, allincome, parentid)
 VALUES (1, 'Eleks', 450.1, 700.1, 7)

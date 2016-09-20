@@ -16,8 +16,12 @@ public class JDBCStore implements Storage{
     String dbPassword = "root";
 
     public JDBCStore() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        this.connection =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/companiesDB",dbName, dbPassword);
+//        Class.forName("org.postgresql.Driver");
+//        this.connection =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/companiesDB",dbName, dbPassword);
+        Class.forName("com.mysql.jdbc.Driver");
+//        this.connection =  DriverManager.getConnection("jdbc:mysql://104.198.56.204:3306/companies", "root", "root");
+        this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
+//        this.connection =  DriverManager.getConnection("jdbc:mysql://localhost:3307/companies", "root", "root");
     }
 
     public Collection<Company> companys() {

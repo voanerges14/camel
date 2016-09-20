@@ -19,7 +19,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-@WebServlet(urlPatterns = {"/get/companies"})
+@WebServlet(urlPatterns = {"*/get/companies"})
 public class LoadFromServer extends HttpServlet {
 
     /***************************************************

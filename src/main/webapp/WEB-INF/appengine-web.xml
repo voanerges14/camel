@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+    <application>eliftechcompanies</application>
+    <version>alpha-002</version>
+    <threadsafe>true</threadsafe>
+    <use-google-connector-j>true</use-google-connector-j>
+    <system-properties>
+        <property name="ae-cloudsql.cloudsql-database-url" value="jdbc:google:mysql://eliftechcompanies:us-central1:eliftechcompanies/companies?user=root&amp;password=root" />
+        <property name="ae-cloudsql.local-database-url" value="jdbc:mysql://localhost/companies?user=root&amp;password=root&amp;useSSL=false" />
+    </system-properties>
+
+</appengine-web-app>
