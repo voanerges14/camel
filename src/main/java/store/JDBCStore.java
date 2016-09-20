@@ -7,21 +7,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by Pavlo on 14-09,Sep-16.
- */
 public class JDBCStore implements Storage{
     private final Connection connection;
     String dbName = "postgres";
     String dbPassword = "root";
 
     public JDBCStore() throws SQLException, ClassNotFoundException {
-//        Class.forName("org.postgresql.Driver");
-//        this.connection =  DriverManager.getConnection("jdbc:postgresql://localhost:5432/companiesDB",dbName, dbPassword);
-        Class.forName("com.mysql.jdbc.Driver");
-//        this.connection =  DriverManager.getConnection("jdbc:mysql://104.198.56.204:3306/companies", "root", "root");
-        this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
+//        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.jdbc.GoogleDriver");
+//        this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
 //        this.connection =  DriverManager.getConnection("jdbc:mysql://localhost:3307/companies", "root", "root");
+        this.connection =  DriverManager.getConnection("jdbc:google:mysql://104.198.56.204:3306/companies", "root", "root");
+
+//        String url = null;
+//        if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
+//            // Load the class that provides the new "jdbc:google:mysql://" prefix.
+//            Class.forName("com.mysql.jdbc.GoogleDriver");
+//            url = "jdbc:google:mysql://eliftechcompanies:eliftechcompanies:us-central1:eliftechcompanies/companies?user=root";
+//        } else {
+//            // Local MySQL instance to use during development.
+//            Class.forName("com.mysql.jdbc.Driver");
+//            url = "jdbc:mysql://127.0.0.1:3306/companies?user=root";
+//        }
+//        this.connection =  DriverManager.getConnection(url);
     }
 
     public Collection<Company> companys() {
@@ -70,7 +78,6 @@ public class JDBCStore implements Storage{
             e.printStackTrace();
         }
     }
-/*хз хз*/
     public void delete(int id) {
 
         String sql = "WITH RECURSIVE\n" +
@@ -85,18 +92,6 @@ public class JDBCStore implements Storage{
                 " DELETE FROM company WHERE (SELECT * FROM Rec \n" +
                 " WHERE cid is (?));";
 
-//        List<Company> list = new ArrayList<Company>();
-//        for(int i = 0; i < list.size(); ++i)
-//        {
-//            ResultSet list = "select cid from company where parentId = (?)";
-//        String qsl = "delete from company where id = (?)";
-//            delete(list[i]);
-//        }
-//        try (final PreparedStatement statement = this.connection.prepareStatement(sql)) {
-//            statement.setInt(1, id);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public Company get(int id) {

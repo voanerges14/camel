@@ -37,17 +37,7 @@ public class DeleteCompany extends HttpServlet{
             e.printStackTrace();
         }
 
-
-       /* try {
-            JDBCStore jdbcStore = new JDBCStore();
-//            jdbcStore.delete(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-        //response.setContentType("application/json");
-        //response.setStatus(response.SC_OK);
         PrintWriter out = response.getWriter();
-       // out.print();
         out.flush();
     }
 

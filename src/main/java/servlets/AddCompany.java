@@ -26,24 +26,16 @@ public class AddCompany extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // This will store all received articles
     List<Company> companies = new LinkedList<Company>();
-
-    /***************************************************
-     * URL: /jsonservlet
-     * doPost(): receives JSON data, parse it, map it and send back as JSON
-     ****************************************************/
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
 
-        // 1. get received JSON data from request
         request.setCharacterEncoding("windows-1251");
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
         if(br != null){
             json = br.readLine();
         }
-
         ObjectMapper mapper = new ObjectMapper();
         Company company = mapper.readValue(json, Company.class);
         JSONObject object = new JSONObject();

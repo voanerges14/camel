@@ -18,24 +18,14 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Pavlo on 17-09,Sep-16.
- */
 @WebServlet(urlPatterns = {"/edit/company"})
 public class EditCompany extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // This will store all received articles
     List<Company> companies = new LinkedList<Company>();
-
-    /***************************************************
-     * URL: /jsonservlet
-     * doPost(): receives JSON data, parse it, map it and send back as JSON
-     ****************************************************/
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. get received JSON data from request
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
         if(br != null){

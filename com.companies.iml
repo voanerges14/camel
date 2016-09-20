@@ -9,6 +9,21 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="google-app-engine" name="Google App Engine">
+      <configuration>
+        <sdk-home-path>C:/ToolsForJava/appengine-java-sdk-1.9.42</sdk-home-path>
+        <run-enhancer-on-make>true</run-enhancer-on-make>
+        <files-to-enhance>
+          <file path="$MODULE_DIR$/src/main/java" />
+          <file path="$MODULE_DIR$/src/main/resources" />
+        </files-to-enhance>
+        <persistence-api>JDO3</persistence-api>
       </configuration>
     </facet>
   </component>
@@ -17,6 +32,8 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -29,8 +46,8 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" level="project" />
     <orderEntry type="library" name="Maven: javaee:javaee-api:5" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
     <orderEntry type="library" name="Maven: postgresql:postgresql:9.1-901.jdbc4" level="project" />
+    <orderEntry type="library" name="Maven: org.postgresql:postgresql:9.4.1208.jre7" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.2" level="project" />
@@ -38,5 +55,48 @@
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20090211" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.2" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.39" level="project" />
+    <orderEntry type="library" name="Maven: com.google.appengine:appengine-testing:1.9.38" level="project" />
+    <orderEntry type="library" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.9.40" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud.sql:mysql-socket-factory:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-sqladmin:v1beta4-rev25-1.22.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.api-client:google-api-client:1.22.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.http-client:google-http-client-jackson2:1.22.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava-jdk5:17.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java-bigquery:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-bigquery:v2-rev270-1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java-core:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.auth:google-auth-library-credentials:0.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.auth:google-auth-library-oauth2-http:0.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.http-client:google-http-client:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:1.3.9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: com.google.oauth-client:google-oauth-client:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.api-client:google-api-client-appengine:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.oauth-client:google-oauth-client-appengine:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.oauth-client:google-oauth-client-servlet:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.http-client:google-http-client-jdo:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.api-client:google-api-client-servlet:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.jdo:jdo2-api:2.3-eb" level="project" />
+    <orderEntry type="library" name="Maven: javax.transaction:transaction-api:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.http-client:google-http-client-appengine:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.http-client:google-http-client-jackson:1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java-datastore:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud.datastore:datastore-v1beta3-protos:1.0.0-beta" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.0.0-beta-1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud.datastore:datastore-v1beta3-proto-client:1.0.0-beta" level="project" />
+    <orderEntry type="library" name="Maven: com.google.http-client:google-http-client-protobuf:1.20.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java-dns:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-dns:v1-rev7-1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java-resourcemanager:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-cloudresourcemanager:v1beta1-rev10-1.21.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.cloud:gcloud-java-storage:0.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-storage:v1-rev62-1.21.0" level="project" />
   </component>
 </module>

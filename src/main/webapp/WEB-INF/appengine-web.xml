@@ -4,9 +4,15 @@
     <version>alpha-002</version>
     <threadsafe>true</threadsafe>
     <use-google-connector-j>true</use-google-connector-j>
+    <!--<system-properties>-->
+        <!--<property name="ae-cloudsql.cloudsql-database-url" value="jdbc:google:mysql://eliftechcompanies:us-central1:eliftechcompanies/companies?user=root&amp;password=root" />-->
+        <!--<property name="ae-cloudsql.local-database-url" value="jdbc:mysql://localhost/companies?user=root&amp;password=root&amp;useSSL=false" />-->
+    <!--</system-properties>-->
+
     <system-properties>
-        <property name="ae-cloudsql.cloudsql-database-url" value="jdbc:google:mysql://eliftechcompanies:us-central1:eliftechcompanies/companies?user=root&amp;password=root" />
-        <property name="ae-cloudsql.local-database-url" value="jdbc:mysql://localhost/companies?user=root&amp;password=root&amp;useSSL=false" />
+        <property name="ae-cloudsql.cloudsql-database-url" value="jdbc:google:mysql://eliftechcompanies:us-central1:eliftechcompanies/DATABASE-NAME?user=USERNAME&amp;password=PASSWORD" />
+        <property name="ae-cloudsql.local-database-url" value="jdbc:mysql://localhost/DATABASE-NAME?user=USERNAME&amp;PASSWORD=password&amp;useSSL=false" />
     </system-properties>
+
 
 </appengine-web-app>
