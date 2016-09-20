@@ -18,11 +18,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by Bogdan on 18.09.2016.
- */
+
 @WebServlet(urlPatterns = {"/get/companies"})
-public class LoadFromServ extends HttpServlet {
+public class LoadFromServer extends HttpServlet {
 
     /***************************************************
      * URL: /jsonservlet
