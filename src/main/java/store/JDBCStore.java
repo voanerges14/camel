@@ -13,11 +13,11 @@ public class JDBCStore implements Storage{
     String dbPassword = "root";
 
     public JDBCStore() throws SQLException, ClassNotFoundException {
-//        Class.forName("com.mysql.jdbc.Driver");
-        Class.forName("com.mysql.jdbc.GoogleDriver");
-//        this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
+        Class.forName("com.mysql.jdbc.Driver");
+//        Class.forName("com.mysql.jdbc.GoogleDriver");
+        this.connection =  DriverManager.getConnection("jdbc:mysql://companies.czrh6kl4gie2.us-west-2.rds.amazonaws.com/companies", "root", "rootroot");
 //        this.connection =  DriverManager.getConnection("jdbc:mysql://localhost:3307/companies", "root", "root");
-        this.connection =  DriverManager.getConnection("jdbc:google:mysql://104.198.56.204:3306/companies", "root", "root");
+//        this.connection =  DriverManager.getConnection("jdbc:google:mysql://104.198.56.204:3306/companies", "root", "root");
 
 //        String url = null;
 //        if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
